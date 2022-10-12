@@ -183,6 +183,7 @@ class SortingVisualizer extends Component {
                     >
                     </div>
                 ))}
+                <div>This is the Sorting Visualizer</div>
             </div>
         );
     }
