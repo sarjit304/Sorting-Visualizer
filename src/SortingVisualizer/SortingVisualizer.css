@@ -23,6 +23,7 @@
     margin: 1px;
     margin-bottom: 35px;
     margin-top: 5px;
+    transition: background-color 0.15s, color 0.15s, border 0.15s;
 }
 
 .button1:hover {
@@ -35,6 +36,10 @@
     background-color: #4CAF50;
     color: white;
 } 
+
+.button1:active {
+    opacity: 0.6;
+}
 
 .first {
     margin-right: 5cm;
