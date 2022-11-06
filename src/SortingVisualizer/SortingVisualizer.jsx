@@ -180,7 +180,7 @@ class SortingVisualizer extends Component {
         return (
             <div className='array-container' >
                 <div className='btn-section'>
-                    <button onClick={this.resetArray} className={BUTTON_BADGES+' first'}>Generate new array</button>
+                    <button onClick={this.resetArray} className={BUTTON_BADGES}>Generate new array</button>
                     <button onClick={this.mergeSort.bind(this)} className={BUTTON_BADGES}>Merge Sort</button>  
                     <button onClick={this.bubbleSort} className={BUTTON_BADGES}>Bubble Sort</button>
                     <button onClick={this.quickSort} className={BUTTON_BADGES}>Quick Sort</button>
