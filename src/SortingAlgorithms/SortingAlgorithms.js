@@ -100,9 +100,10 @@ function swap(mainArray, xp, yp, animations) {
 }
 
 export function getQuickSortAnimations(array) {
+  console.log('given array: ', array);
   let animations = [];
   doQuickSort(array, 0, array.length-1, animations);
-  animations = animations.slice(178);
+  animations = animations.slice(array.length);
   console.log(animations);
   return animations;
 }
