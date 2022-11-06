@@ -39,7 +39,7 @@ class SortingVisualizer extends Component {
         console.log(window.innerWidth, window.innerHeight);
         let numberOfArrayBars;
         if(window.innerWidth>window.innerHeight) {
-            numberOfArrayBars = Math.floor(window.innerWidth/7.04);
+            numberOfArrayBars = Math.floor(window.innerWidth/8.8);
         } else {
             numberOfArrayBars = Math.floor(window.innerWidth/10)
         }
