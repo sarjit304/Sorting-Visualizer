@@ -18,6 +18,9 @@ const SECONDARY_COLOR = 'red';
 // Button badges
 let BUTTON_BADGES = 'button button1';
 
+// Disable buttons
+let isDisabled = '';
+
 
 class SortingVisualizer extends Component {
     constructor(props) {
@@ -33,7 +36,15 @@ class SortingVisualizer extends Component {
 
     resetArray = () => {
         const array = [];
-        for (let i=0; i<NUMBER_OF_ARRAY_BARS; i++){
+        console.log(window.innerWidth, window.innerHeight);
+        let numberOfArrayBars;
+        if(window.innerWidth>window.innerHeight) {
+            numberOfArrayBars = Math.floor(window.innerWidth/7.04);
+        } else {
+            numberOfArrayBars = Math.floor(window.innerWidth/10)
+        }
+        console.log('number of bars: ', numberOfArrayBars)
+        for (let i=0; i<numberOfArrayBars/*NUMBER_OF_ARRAY_BARS*/; i++){
             array.push(randomIntFromInterval(45, 730));
         }
         array.push(730);
@@ -163,11 +174,13 @@ class SortingVisualizer extends Component {
         }
     }
 
+
+
     render() { 
         return (
-            <div className='array-container text-bg-dark' >
+            <div className='array-container' >
                 <div className='btn-section'>
-                    <button  disabled={this.state.disabled} onClick={this.resetArray} className={BUTTON_BADGES+' first'}>Generate new array</button>
+                    <button onClick={this.resetArray} className={BUTTON_BADGES+' first'}>Generate new array</button>
                     <button onClick={this.mergeSort.bind(this)} className={BUTTON_BADGES}>Merge Sort</button>  
                     <button onClick={this.bubbleSort} className={BUTTON_BADGES}>Bubble Sort</button>
                     <button onClick={this.quickSort} className={BUTTON_BADGES}>Quick Sort</button>
