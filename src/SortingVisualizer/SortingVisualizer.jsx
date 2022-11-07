@@ -6,8 +6,11 @@ import './SortingVisualizer.css'
 // Change this value for the speed of the animations.
 const ANIMATION_SPEED_MS = 10;
 
-// Change this value for the number of bars (value) in the array.
-const NUMBER_OF_ARRAY_BARS = 177;
+// Number of bars is set dynamically according to screen size.
+let NUMBER_OF_ARRAY_BARS;
+
+// Max height of bars set dynamically according to screen size.
+let HEIGHT_OF_ARRAY_BARS;
 
 // This is the main color of the array bars.
 const PRIMARY_COLOR = 'turquoise';
@@ -17,9 +20,6 @@ const SECONDARY_COLOR = 'red';
 
 // Button badges
 let BUTTON_BADGES = 'button button1';
-
-// Disable buttons
-let isDisabled = '';
 
 
 class SortingVisualizer extends Component {
@@ -36,18 +36,19 @@ class SortingVisualizer extends Component {
 
     resetArray = () => {
         const array = [];
-        console.log(window.innerWidth, window.innerHeight);
-        let numberOfArrayBars;
+        console.log('width:', window.innerWidth,'height:', window.innerHeight);
         if(window.innerWidth>window.innerHeight) {
-            numberOfArrayBars = Math.floor(window.innerWidth/8.8);
+            NUMBER_OF_ARRAY_BARS = Math.floor(window.innerWidth/8.8);
+            HEIGHT_OF_ARRAY_BARS = window.innerHeight/1.1; //max 730
         } else {
-            numberOfArrayBars = Math.floor(window.innerWidth/10)
+            NUMBER_OF_ARRAY_BARS = Math.floor(window.innerWidth/10);
+            HEIGHT_OF_ARRAY_BARS = window.innerHeight/1.45; //max 730
         }
-        console.log('number of bars: ', numberOfArrayBars)
-        for (let i=0; i<numberOfArrayBars/*NUMBER_OF_ARRAY_BARS*/; i++){
-            array.push(randomIntFromInterval(45, 730));
+        console.log('number of bars: ', NUMBER_OF_ARRAY_BARS)
+        for (let i=0; i<NUMBER_OF_ARRAY_BARS; i++){
+            array.push(randomIntFromInterval(45, HEIGHT_OF_ARRAY_BARS));
         }
-        array.push(730);
+        array.push(HEIGHT_OF_ARRAY_BARS);
         this.setState({ array });
     }
 
