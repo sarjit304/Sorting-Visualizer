@@ -21,12 +21,19 @@ const SECONDARY_COLOR = 'red';
 // Button badges
 let BUTTON_BADGES = 'button button1';
 
+// Dark Theme color.
+const DARK_THEME_HEX =  "#121212";
+
+// Light Theme color.
+const LIGHT_THEME_HEX = 'white';
+
 
 class SortingVisualizer extends Component {
     constructor(props) {
         super(props);
         this.state = { 
             array: [],
+            theme: DARK_THEME_HEX,
         };    
     }
 
@@ -36,6 +43,7 @@ class SortingVisualizer extends Component {
 
     resetArray = () => {
         const array = [];
+        const theme = this.state.theme;
         console.log('width:', window.innerWidth,'height:', window.innerHeight);
         if(window.innerWidth>window.innerHeight) {
             NUMBER_OF_ARRAY_BARS = Math.floor(window.innerWidth/8.8);
@@ -49,7 +57,7 @@ class SortingVisualizer extends Component {
             array.push(randomIntFromInterval(45, HEIGHT_OF_ARRAY_BARS));
         }
         array.push(HEIGHT_OF_ARRAY_BARS);
-        this.setState({ array });
+        this.setState({ array, theme });
     }
 
     mergeSort = () => {
@@ -175,12 +183,22 @@ class SortingVisualizer extends Component {
         }
     }
 
-
+    handleTheme = () => {
+        const array = this.state.array;
+        let theme = this.state.theme;
+        if (theme === DARK_THEME_HEX) {
+            theme = LIGHT_THEME_HEX;
+        } else {
+            theme = DARK_THEME_HEX;
+        }
+        this.setState({ array, theme });
+    }
 
     render() { 
         return (
-            <div className='array-container' >
+            <div className='array-container' style={{backgroundColor: this.state.theme}}>
                 <div className='btn-section'>
+                    <button onClick={this.handleTheme} className={BUTTON_BADGES}>Change Theme</button>
                     <button onClick={this.resetArray} className={BUTTON_BADGES}>Generate new array</button>
                     <button onClick={this.mergeSort.bind(this)} className={BUTTON_BADGES}>Merge Sort</button>  
                     <button onClick={this.bubbleSort} className={BUTTON_BADGES}>Bubble Sort</button>
